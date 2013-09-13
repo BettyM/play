@@ -1,0 +1,9 @@
+@(movies: Iterator[Movie])
+
+@main("List of movies!") {
+<ul>
+    @movies.map { movie =>
+    <li><a>@movie.title</a></li>
+    }
+</ul>
+}
