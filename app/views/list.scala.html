@@ -3,7 +3,7 @@
 @main("List of movies!") {
 <ul>
     @movies.map { movie =>
-    <li><a>@movie.title</a></li>
+    <li><a href="@routes.Application.view(movie.id)">@movie.title</a></li>
     }
 </ul>
 }
