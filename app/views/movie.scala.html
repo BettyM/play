@@ -1,6 +1,15 @@
 @(movie: Movie)
 
 @main("Movie Data") {
-<h1>@movie.title</h1>
-<p>@movie.description</p>
+<div class="content">
+    <!--p class="date">12.04.09</p-->
+    <h4>@movie.title</h4>
+    <p>@movie.description</p>
+    <h4 class="inline">Director:</h4>
+    <span class="itemprop" itemprop="name">@movie.director</span>
+    <h4 class="inline">Writer:</h4>
+    <span class="itemprop" itemprop="name">@movie.writer</span>
+    <h4 class="inline">Actors:</h4>
+    <span class="itemprop" itemprop="name">@movie.actors</span>
+</div>
 }

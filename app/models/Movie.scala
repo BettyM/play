@@ -37,6 +37,10 @@ trait MovieDAO extends ModelCompanion[Movie, ObjectId] {
   def findByTitle(title: String): Option[Movie] = dao.findOne(MongoDBObject("title" -> title))
   //def findOne[A <% DBObject](t: A, rp: ReadPreference = defaultReadPreference) = dao.findOne(t, rp)
   //def find[A <% DBObject, B <% DBObject](ref: A, keys: B, rp: ReadPreference = defaultReadPreference) = dao.find(ref, keys, rp)
+  /*def saveData(title: String, desc: String) = {
+    //val data = new Movie(title, genre, desc, date, director, writer, actors)
+    dao.insert(data)
+  } */
 }
 
 

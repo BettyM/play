@@ -1,0 +1,36 @@
+@(formMovie: Form[Movie])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+<h1>Add a Good Movie</h1>
+
+@helper.form(action = routes.Application.addMovie, 'id -> "formMovie", 'class -> "form-horizontal") {
+
+<fieldset>
+    @inputText(formMovie("title"), '_label -> "Title")
+    @inputText(formMovie("genre"), '_label -> "Genre")
+    @inputText(formMovie("description"), '_label -> "Description")
+    @inputText(formMovie("director"), '_label -> "Director")
+    @inputText(formMovie("writer"), '_label -> "Writer")
+    @inputText(formMovie("actors"), '_label -> "Actors")
+</fieldset>
+<div class="actions">
+    <input type="submit" class="btn primary" value="Insert">
+    <a href="@routes.Application.list" class="btn">Cancel</a>
+</div>
+}
+
+<!--
+<div class="content">
+<form method="post" autocomplete="on">
+   Title:<input type="text" name="title"><br>
+    Description:<input type="text" name="description"><br>
+    Director:<input type="text" name="description"><br>
+    Writer:<input type="text" name="description"><br>
+    Actors:<input type="text" name="description"><br>
+    <input type="submit">
+</form>
+</div>  -->
+
+
