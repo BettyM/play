@@ -12,4 +12,9 @@
     <h4 class="inline">Actors:</h4>
     <span class="itemprop" itemprop="name">@movie.actors</span>
 </div>
+<div class="actions">
+    <!--a href="@routes.Application.updateMovie(movie.id)" class="btn">Edit</a-->
+    <a href="@routes.Application.removeMovie(movie.id)" class="btn">Delete</a>
+    <a href="@routes.Application.list" class="btn">Back</a>
+</div>
 }

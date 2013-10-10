@@ -4,6 +4,7 @@ import play.api._
 import play.api.mvc._
 import views._
 import models._
+import controllers.Actions._
 import com.mongodb.casbah.WriteConcern
 import se.radley.plugin.salat._
 import com.mongodb.casbah.Imports._
@@ -18,9 +19,8 @@ object Application extends Controller {
   //val objectId = of[ObjectId]
   val moviesForm = Form(
     mapping(
-      "_id" ->  ignored(new ObjectId()),
-      //"_id" ->  optional(objectId),
-      //"title" -> nonEmptyText,
+      //"_id" ->  ignored(new ObjectId()),
+      "_id" ->  optional(objectId),
       "title" -> text,
       "genre" -> text,
       "description" -> text,
@@ -76,4 +76,9 @@ object Application extends Controller {
       Ok(html.list(movies))
   }
 
+  def removeMovie(id: ObjectId) = Action {
+    Movie.removeById(id)
+    val movies = Movie.findAll
+    Ok(html.list(movies))
+  }
 }
