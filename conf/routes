@@ -7,7 +7,7 @@ GET     /                           controllers.Application.list
 GET     /add                        controllers.Application.add
 GET     /:id                        controllers.Application.view(id: ObjectId)
 POST    /addMovie                   controllers.Application.addMovie
-#GET    /updateMovie/:id            controllers.Application.updateMovie(id: ObjectId)
+GET    /updateMovie/:id            controllers.Application.updateMovie(id: ObjectId)
 GET    /removeMovie/:id            controllers.Application.removeMovie(id: ObjectId)
 
 

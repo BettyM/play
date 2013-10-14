@@ -15,6 +15,8 @@ import se.radley.plugin.salat._
 import se.radley.plugin.salat.Binders._
 import mongoContext._
 
+//import play.api.mvc.{JavascriptLitteral, QueryStringBindable}
+
 
 case class Movie (
               @Key("_id")id: ObjectId = new ObjectId,
@@ -35,6 +37,10 @@ trait MovieDAO extends ModelCompanion[Movie, ObjectId] {
 
   //Queries
   def findByTitle(title: String): Option[Movie] = dao.findOne(MongoDBObject("title" -> title))
+  def updateById(movie: Movie) = dao.update(MongoDBObject("_id" -> movie.id),
+    MongoDBObject("$set" -> MongoDBObject("title" -> movie.title, "genre" -> movie.genre, "description" -> movie.description, "release_date" -> movie.release_date, "director" -> movie.director, "writer" -> movie.writer, "actors" -> movie.actors)),
+    false, false, new WriteConcern)
+  //def removeById(id: ObjectId): Option[Movie] = dao.removeById()
   //def findOne[A <% DBObject](t: A, rp: ReadPreference = defaultReadPreference) = dao.findOne(t, rp)
   //def find[A <% DBObject, B <% DBObject](ref: A, keys: B, rp: ReadPreference = defaultReadPreference) = dao.find(ref, keys, rp)
   /*def saveData(title: String, desc: String) = {

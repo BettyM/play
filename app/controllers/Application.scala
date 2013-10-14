@@ -19,8 +19,8 @@ object Application extends Controller {
   //val objectId = of[ObjectId]
   val moviesForm = Form(
     mapping(
-      //"_id" ->  ignored(new ObjectId()),
-      "_id" ->  optional(objectId),
+      "_id" ->  ignored(new ObjectId()),
+      //"_id" ->  optional(objectId),
       "title" -> text,
       "genre" -> text,
       "description" -> text,
@@ -80,5 +80,19 @@ object Application extends Controller {
     Movie.removeById(id)
     val movies = Movie.findAll
     Ok(html.list(movies))
+  }
+
+  def updateMovie(id: ObjectId) = Action {
+    val movie = Movie(
+      id = id,
+      title = "newTitle",
+      genre = "newGenre",
+      description = "new Description",
+      director = "newDirector",
+      writer =  "newWriter",
+      actors = "newActors"
+    )
+    Movie.updateById(movie)
+    Ok("updated!")
   }
 }
