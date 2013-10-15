@@ -40,13 +40,10 @@ trait MovieDAO extends ModelCompanion[Movie, ObjectId] {
   def updateById(movie: Movie) = dao.update(MongoDBObject("_id" -> movie.id),
     MongoDBObject("$set" -> MongoDBObject("title" -> movie.title, "genre" -> movie.genre, "description" -> movie.description, "release_date" -> movie.release_date, "director" -> movie.director, "writer" -> movie.writer, "actors" -> movie.actors)),
     false, false, new WriteConcern)
+  def saveMovie(movie: Movie) = dao.save(Movie(title = movie.title, genre = movie.genre, description = movie.description, release_date = movie.release_date, director = movie.director, writer = movie.writer, actors = movie.actors))
   //def removeById(id: ObjectId): Option[Movie] = dao.removeById()
   //def findOne[A <% DBObject](t: A, rp: ReadPreference = defaultReadPreference) = dao.findOne(t, rp)
   //def find[A <% DBObject, B <% DBObject](ref: A, keys: B, rp: ReadPreference = defaultReadPreference) = dao.find(ref, keys, rp)
-  /*def saveData(title: String, desc: String) = {
-    //val data = new Movie(title, genre, desc, date, director, writer, actors)
-    dao.insert(data)
-  } */
 }
 
 

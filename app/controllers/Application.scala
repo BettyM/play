@@ -46,32 +46,19 @@ object Application extends Controller {
     Ok(html.add(moviesForm))
   }
 
-
-  /*def addMovie = JsonAction[Movie] { movie =>
-    Movie.insert(movie, WriteConcern.Safe)
-    Ok(Json.toJson(movie))
-    /*val movies = Movie.findAll
-    Ok(html.list(movies))*/
-  } */
-
   def addMovie = Action {
     implicit request =>
       def values = moviesForm.bindFromRequest()(request).data
-      def form_title = values("title")
-      def form_genre = values("genre")
-      def form_description = values("description")
-      def form_director = values("director")
-      def form_writer = values("writer")
-      def form_actors = values("actors")
-      Movie.save(Movie(
-        title = form_title,
-        genre = form_genre,
-        description = form_description,
-        director = form_director,
-        writer =  form_writer,
-        actors = form_actors
-      ))
-      //Movie.saveData("some title", "some description...")
+
+    val movie = Movie(
+        title = values("title"),
+        genre = values("genre"),
+        description = values("description"),
+        director = values("director"),
+        writer = values("writer"),
+        actors = values("actors")
+      )
+      Movie.saveMovie(movie)
       val movies = Movie.findAll
       Ok(html.list(movies))
   }
